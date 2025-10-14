@@ -1,185 +1,180 @@
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { ExternalLink, Github } from "lucide-react"
+import { Navigation, StatusBar } from "@/components/navigation"
 
 export default function SkillsPage() {
-  const skillCategories = [
+  const expertiseAreas = [
     {
-      category: "Programming Languages",
-      skills: [
-        { name: "JavaScript", level: 90 },
-        { name: "TypeScript", level: 85 },
-        { name: "Python", level: 80 },
-        { name: "Java", level: 75 },
-        { name: "C++", level: 70 },
-        { name: "Go", level: 65 },
-        { name: "Rust", level: 60 },
-        { name: "SQL", level: 85 },
-      ],
+      title: "AI-Powered Solutions",
+      description: "Building intelligent applications that leverage artificial intelligence to solve real-world problems and create value for businesses and users.",
+      skills: ["Machine Learning", "Computer Vision", "Natural Language Processing", "Python", "TensorFlow", "OpenAI API"],
+      projects: [
+        {
+          name: "Cates",
+          description: "AI-powered catering solution that helps restaurants maximize profits through intelligent menu optimization and demand forecasting",
+          tech: ["Python", "TensorFlow", "React", "Node.js", "PostgreSQL"]
+        },
+        {
+          name: "Petra",
+          description: "AI dog poop analysis app that provides health insights to dog owners through computer vision and machine learning",
+          tech: ["Computer Vision", "Python", "React Native", "AWS", "OpenCV"]
+        }
+      ]
     },
     {
-      category: "Frontend Development",
-      skills: [
-        { name: "React", level: 90 },
-        { name: "Next.js", level: 85 },
-        { name: "Vue.js", level: 80 },
-        { name: "HTML/CSS", level: 95 },
-        { name: "Tailwind CSS", level: 90 },
-        { name: "SASS/SCSS", level: 85 },
-        { name: "Webpack", level: 75 },
-        { name: "Vite", level: 80 },
-      ],
+      title: "Social & Media Platforms",
+      description: "Creating engaging social platforms and media applications that prioritize user experience and efficient information delivery.",
+      skills: ["React Native", "Real-time Systems", "Video Processing", "Social Features", "Content Moderation"],
+      projects: [
+        {
+          name: "Vert",
+          description: "TikTok-like app focused on delivering the most accurate news efficiently through AI-powered content curation",
+          tech: ["React Native", "Node.js", "MongoDB", "AI/ML", "Real-time APIs"]
+        }
+      ]
     },
     {
-      category: "Backend Development",
-      skills: [
-        { name: "Node.js", level: 85 },
-        { name: "Express.js", level: 85 },
-        { name: "Django", level: 75 },
-        { name: "Flask", level: 80 },
-        { name: "FastAPI", level: 70 },
-        { name: "GraphQL", level: 75 },
-        { name: "REST APIs", level: 90 },
-        { name: "Microservices", level: 70 },
-      ],
+      title: "End-to-End Startup Platforms",
+      description: "Building comprehensive platforms that support entrepreneurs throughout their entire journey from idea validation to scaling.",
+      skills: ["Full-Stack Development", "User Management", "Payment Processing", "Matching Algorithms", "Scalable Architecture"],
+      projects: [
+        {
+          name: "Ignition Labs",
+          description: "Complete platform for startup founders to validate ideas, connect with users, employees, and investors all in one app",
+          tech: ["Next.js", "Node.js", "PostgreSQL", "Stripe", "WebRTC", "Matching AI"]
+        }
+      ]
     },
     {
-      category: "Database & Storage",
-      skills: [
-        { name: "PostgreSQL", level: 85 },
-        { name: "MongoDB", level: 80 },
-        { name: "Redis", level: 75 },
-        { name: "MySQL", level: 80 },
-        { name: "Firebase", level: 85 },
-        { name: "Supabase", level: 80 },
-        { name: "AWS S3", level: 75 },
-        { name: "Elasticsearch", level: 65 },
-      ],
+      title: "Mobile & Cross-Platform Development",
+      description: "Creating seamless mobile experiences that work flawlessly across iOS and Android while maintaining native performance.",
+      skills: ["React Native", "Flutter", "iOS", "Android", "Cross-Platform", "Performance Optimization"],
+      projects: [
+        {
+          name: "Petra Mobile App",
+          description: "Cross-platform mobile app for dog health monitoring with camera integration and AI analysis",
+          tech: ["React Native", "Camera API", "AI Integration", "Cloud Storage"]
+        },
+        {
+          name: "Vert Mobile Platform",
+          description: "High-performance mobile app for news consumption with video streaming and social features",
+          tech: ["React Native", "Video Streaming", "Real-time Updates", "Push Notifications"]
+        }
+      ]
     },
     {
-      category: "DevOps & Tools",
-      skills: [
-        { name: "Git", level: 95 },
-        { name: "Docker", level: 80 },
-        { name: "AWS", level: 75 },
-        { name: "Vercel", level: 90 },
-        { name: "GitHub Actions", level: 80 },
-        { name: "Linux", level: 85 },
-        { name: "Nginx", level: 70 },
-        { name: "Kubernetes", level: 60 },
-      ],
-    },
-    {
-      category: "Mobile Development",
-      skills: [
-        { name: "React Native", level: 85 },
-        { name: "Flutter", level: 70 },
-        { name: "iOS Development", level: 65 },
-        { name: "Android Development", level: 65 },
-        { name: "Expo", level: 80 },
-        { name: "PWA", level: 85 },
-      ],
-    },
+      title: "Backend & Infrastructure",
+      description: "Designing and implementing robust backend systems that can handle complex business logic and scale with growing user bases.",
+      skills: ["Node.js", "Python", "PostgreSQL", "MongoDB", "AWS", "Docker", "Microservices"],
+      projects: [
+        {
+          name: "Cates Backend System",
+          description: "Scalable backend handling AI model inference, restaurant data processing, and real-time analytics",
+          tech: ["Python", "FastAPI", "PostgreSQL", "Redis", "AWS Lambda"]
+        },
+        {
+          name: "Ignition Labs API",
+          description: "Comprehensive API supporting user matching, payment processing, and real-time communication features",
+          tech: ["Node.js", "Express", "PostgreSQL", "WebSocket", "Stripe API"]
+        }
+      ]
+    }
   ]
 
-  const getSkillBar = (level: number) => {
-    return (
-      <div className="flex items-center gap-2">
-        <div className="w-32 h-2 border border-black bg-white">
-          <div className="h-full bg-black" style={{ width: `${level}%` }}></div>
-        </div>
-        <span className="text-xs w-8">{level}%</span>
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen bg-white text-black font-mono">
-      {/* Menu Bar */}
-      <div className="border-b border-gray-300 bg-gray-100 px-2 py-1">
-        <div className="flex items-center gap-4 text-sm">
-          <span className="font-semibold">Skills - Notepad</span>
-          <nav className="flex gap-4 ml-8">
-            <Link href="/" className="hover:bg-gray-200 px-2 py-1">
-              File
-            </Link>
-            <Link href="/projects" className="hover:bg-gray-200 px-2 py-1">
-              Projects
-            </Link>
-            <Link href="/skills" className="hover:bg-gray-200 px-2 py-1 bg-gray-200">
-              Skills
-            </Link>
-            <Link href="/blog" className="hover:bg-gray-200 px-2 py-1">
-              Blog
-            </Link>
-            <Link href="/contact" className="hover:bg-gray-200 px-2 py-1">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white font-mono">
+      <Navigation />
 
       {/* Main Content */}
       <div className="p-8 max-w-6xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Skills & Technologies</h1>
-          <p className="text-lg text-gray-600 mb-4">My technical expertise and proficiency levels</p>
-          <div className="w-16 h-0.5 bg-black mb-6"></div>
+          <h1 className="text-4xl font-bold mb-2">What I&apos;m Great At</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">My core areas of expertise demonstrated through real projects</p>
+          <div className="w-16 h-0.5 bg-black dark:bg-white mb-6"></div>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {skillCategories.map((category, index) => (
-            <div key={index} className="border-2 border-black p-6">
-              <h2 className="text-xl font-bold mb-4 border-b border-gray-300 pb-2">{category.category}</h2>
-              <div className="space-y-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="flex justify-between items-center">
-                    <span className="text-sm font-medium w-24">{skill.name}</span>
-                    {getSkillBar(skill.level)}
-                  </div>
-                ))}
+        <div className="space-y-12">
+          {expertiseAreas.map((area, index) => (
+            <div key={index} className="border-2 border-black dark:border-white p-8">
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold mb-3">{area.title}</h2>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{area.description}</p>
+              </div>
+
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold mb-3 border-b border-gray-300 dark:border-gray-600 pb-1">Key Technologies</h3>
+                <div className="flex flex-wrap gap-2">
+                  {area.skills.map((skill, skillIndex) => (
+                    <span key={skillIndex} className="bg-gray-100 dark:bg-gray-800 text-black dark:text-white px-3 py-1 text-sm border dark:border-gray-600 font-medium">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold mb-3 border-b border-gray-300 dark:border-gray-600 pb-1">Featured Projects</h3>
+                <div className="grid gap-4 md:grid-cols-2">
+                  {area.projects.map((project, projectIndex) => (
+                    <Card key={projectIndex} className="border border-gray-300 dark:border-gray-600">
+                      <CardContent className="p-4">
+                        <h4 className="font-semibold text-lg mb-2">{project.name}</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{project.description}</p>
+                        <div className="flex flex-wrap gap-1">
+                          {project.tech.map((tech, techIndex) => (
+                            <span key={techIndex} className="bg-black dark:bg-white text-white dark:text-black px-2 py-1 text-xs">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6 border-b border-gray-300 pb-2">Additional Information</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            <div className="border-l-4 border-black pl-4">
-              <h3 className="font-bold text-lg mb-2">Learning Philosophy</h3>
-              <p className="text-sm text-gray-600">
-                I believe in continuous learning and staying updated with the latest technologies. I regularly read
-                documentation, take online courses, and work on personal projects to expand my skill set.
-              </p>
-            </div>
-
-            <div className="border-l-4 border-black pl-4">
-              <h3 className="font-bold text-lg mb-2">Current Focus</h3>
-              <p className="text-sm text-gray-600">
-                Currently diving deeper into cloud architecture, machine learning, and advanced React patterns. Also
-                exploring Rust and WebAssembly for performance-critical applications.
-              </p>
-            </div>
-
-            <div className="border-l-4 border-black pl-4">
-              <h3 className="font-bold text-lg mb-2">Certifications</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• AWS Cloud Practitioner</li>
-                <li>• Google Analytics Certified</li>
-                <li>• MongoDB Developer</li>
-                <li>• Scrum Master (PSM I)</li>
-              </ul>
+        <div className="mt-16 text-center">
+          <div className="border-2 border-black dark:border-white p-8 bg-gray-50 dark:bg-gray-800">
+            <h2 className="text-2xl font-bold mb-4">Ready to Build Something Amazing?</h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+              I combine technical expertise with creative problem-solving to deliver solutions that make a real impact. 
+              Whether it&apos;s a web application, mobile app, or complex backend system, I bring passion and precision to every project.
+            </p>
+            <div className="flex gap-4 justify-center">
+              <Button
+                variant="outline"
+                className="border-2 border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black bg-transparent"
+                asChild
+              >
+                <a href="https://github.com/ArshAnan" target="_blank" rel="noopener noreferrer">
+                  <Github className="w-4 h-4 mr-2" />
+                  View GitHub
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                className="border-2 border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black bg-transparent"
+                asChild
+              >
+                <Link href="/contact">
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Get In Touch
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Status Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-100 border-t border-gray-300 px-4 py-1 text-xs">
-        <div className="flex justify-between">
-          <span>Ready</span>
-          <span>{skillCategories.reduce((total, cat) => total + cat.skills.length, 0)} skills loaded</span>
-        </div>
-      </div>
+      <StatusBar 
+        leftText="Ready" 
+        rightText={`${expertiseAreas.length} expertise areas • ${expertiseAreas.reduce((total, area) => total + area.projects.length, 0)} featured projects`} 
+      />
     </div>
   )
 }

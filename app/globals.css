@@ -145,3 +145,27 @@
 ::-webkit-scrollbar-corner {
   background: #f1f1f1;
 }
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #2a2a2a;
+  border: 1px solid #444;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #555;
+  border: 1px solid #666;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+.dark ::-webkit-scrollbar-corner {
+  background: #2a2a2a;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}

@@ -8,7 +8,13 @@ interface BlogPostPageProps {
   }
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
+export async function generateStaticParams() {
+  // Return an empty array since we don't have any blog posts yet
+  // In a real application, you would fetch all blog post slugs here
+  return []
+}
+
+export default function BlogPostPage({}: BlogPostPageProps) {
   // In a real application, you would fetch the blog post data based on the slug
   // For this demo, we'll use static content
   const blogPost = {
