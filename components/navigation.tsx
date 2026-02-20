@@ -50,6 +50,14 @@ export function Navigation() {
               Blog
             </Link>
             <Link 
+              href="/books" 
+              className={`px-2 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
+                isActive("/books") ? "bg-gray-200 dark:bg-gray-700" : ""
+              }`}
+            >
+              Books
+            </Link>
+            <Link 
               href="/contact" 
               className={`px-2 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
                 isActive("/contact") ? "bg-gray-200 dark:bg-gray-700" : ""
