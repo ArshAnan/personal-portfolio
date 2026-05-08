@@ -87,35 +87,6 @@ export default function ContactPage() {
             </CardContent>
           </Card>
         </div>
-
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6 border-b border-gray-300 dark:border-gray-600 pb-2">Let&apos;s Work Together</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            <div className="border-l-4 border-black dark:border-white pl-4">
-              <h3 className="font-bold text-lg mb-2">Freelance Projects</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Available for web development projects, mobile apps, and consulting work. Let&apos;s discuss your
-                requirements and timeline.
-              </p>
-            </div>
-
-            <div className="border-l-4 border-black dark:border-white pl-4">
-              <h3 className="font-bold text-lg mb-2">Full-time Opportunities</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Open to full-time software engineering positions with innovative companies. Interested in both remote
-                and on-site opportunities.
-              </p>
-            </div>
-
-            <div className="border-l-4 border-black dark:border-white pl-4">
-              <h3 className="font-bold text-lg mb-2">Collaboration</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Always interested in collaborating on open source projects, hackathons, and technical writing
-                opportunities.
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
 
       <StatusBar leftText="Ready" rightText="Contact form loaded" />

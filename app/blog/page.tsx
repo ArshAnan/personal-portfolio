@@ -12,7 +12,7 @@ export default function BlogPage() {
         <div className="mb-10">
           <h1 className="text-4xl font-bold mb-2">Blog</h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
-            Software, systems, finance, learning — in that order, usually.
+            Stuff about software, systems, finance, learning, etc.
           </p>
           <div className="w-16 h-0.5 bg-black dark:bg-white mb-6" />
         </div>
