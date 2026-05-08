@@ -15,13 +15,6 @@ export default function BlogPage() {
             Software, systems, finance, learning — in that order, usually.
           </p>
           <div className="w-16 h-0.5 bg-black dark:bg-white mb-6" />
-          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
-            This is the center of the site. New posts will show up here first; the{" "}
-            <Link href="/" className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-white">
-              File
-            </Link>{" "}
-            page is just a light intro and pointer back to this page.
-          </p>
         </div>
 
         <div className="space-y-6">
