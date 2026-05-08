@@ -8,7 +8,8 @@ export function Navigation() {
   const pathname = usePathname()
 
   const isActive = (path: string) => {
-    return pathname === path
+    if (path === "/") return pathname === "/"
+    return pathname === path || pathname.startsWith(`${path}/`)
   }
 
   return (
@@ -16,7 +17,7 @@ export function Navigation() {
       <div className="flex items-center justify-between text-sm">
         <div className="flex items-center gap-4">
           <span className="font-semibold text-black dark:text-white">Arsh&apos;s Internet Corner</span>
-          <nav className="flex gap-4 ml-8">
+            <nav className="flex gap-4 ml-8">
             <Link 
               href="/" 
               className={`px-2 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
@@ -26,36 +27,12 @@ export function Navigation() {
               File
             </Link>
             <Link 
-              href="/projects" 
-              className={`px-2 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
-                isActive("/projects") ? "bg-gray-200 dark:bg-gray-700" : ""
-              }`}
-            >
-              Projects
-            </Link>
-            <Link 
-              href="/skills" 
-              className={`px-2 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
-                isActive("/skills") ? "bg-gray-200 dark:bg-gray-700" : ""
-              }`}
-            >
-              Skills
-            </Link>
-            <Link 
               href="/blog" 
               className={`px-2 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
                 isActive("/blog") ? "bg-gray-200 dark:bg-gray-700" : ""
               }`}
             >
               Blog
-            </Link>
-            <Link 
-              href="/books" 
-              className={`px-2 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ${
-                isActive("/books") ? "bg-gray-200 dark:bg-gray-700" : ""
-              }`}
-            >
-              Books
             </Link>
             <Link 
               href="/contact" 
