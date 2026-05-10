@@ -1,96 +1,26 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import { Navigation, StatusBar } from "@/components/navigation"
+import { getAllPostsSorted, getPostBySlug } from "@/lib/blog-posts"
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
-  return []
+  return getAllPostsSorted().map((p) => ({ slug: p.slug }))
 }
 
-export default function BlogPostPage({}: BlogPostPageProps) {
-  const blogPost = {
-    title: "Understanding React Server Components",
-    date: "2024-01-15",
-    readTime: "8 min read",
-    tags: ["React", "Next.js", "Web Development"],
-    content: `
-React Server Components represent a paradigm shift in how we think about React applications. They allow us to render components on the server, reducing the amount of JavaScript sent to the client and improving performance.
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params
+  const blogPost = getPostBySlug(slug)
 
-## What are React Server Components?
-
-React Server Components are a new type of component that runs exclusively on the server. Unlike traditional React components that run in the browser, Server Components execute during the build process or on each request, depending on your setup.
-
-### Key Benefits
-
-1. **Reduced Bundle Size**: Server Components don't add to your client-side JavaScript bundle
-2. **Direct Database Access**: You can fetch data directly from databases without creating API endpoints
-3. **Improved Performance**: Less JavaScript means faster page loads
-4. **Better SEO**: Content is rendered on the server, making it immediately available to search engines
-
-## How They Work
-
-Server Components work by rendering on the server and sending the resulting HTML to the client. The client then hydrates only the interactive parts of your application.
-
-\`\`\`jsx
-// This is a Server Component
-async function BlogPost({ id }) {
-  // This runs on the server
-  const post = await db.posts.findById(id)
-  
-  return (
-    <article>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
-    </article>
-  )
-}
-\`\`\`
-
-## Client vs Server Components
-
-It's important to understand when to use each type:
-
-- **Server Components**: Use for static content, data fetching, and non-interactive elements
-- **Client Components**: Use for interactive elements, event handlers, and browser APIs
-
-## Implementation in Next.js
-
-Next.js 13+ has built-in support for Server Components with the App Router:
-
-\`\`\`jsx
-// app/page.js - This is a Server Component by default
-export default async function HomePage() {
-  const posts = await fetchPosts()
-  
-  return (
-    <div>
-      {posts.map(post => (
-        <PostCard key={post.id} post={post} />
-      ))}
-    </div>
-  )
-}
-\`\`\`
-
-## Best Practices
-
-1. **Keep Server Components Simple**: Avoid complex logic that might be better suited for the client
-2. **Use Client Components for Interactivity**: Any component that needs event handlers should be a Client Component
-3. **Optimize Data Fetching**: Take advantage of the ability to fetch data directly in Server Components
-4. **Consider the Boundary**: Be mindful of where you place the boundary between server and client components
-
-## Conclusion
-
-React Server Components are a powerful addition to the React ecosystem. They offer significant performance benefits and open up new possibilities for how we structure our applications. While there's a learning curve, the benefits make them worth exploring for your next React project.
-
-The future of React development is looking more server-centric, and Server Components are leading the way. As the ecosystem continues to evolve, we can expect to see more tools and frameworks embracing this pattern.
-    `,
+  if (!blogPost) {
+    notFound()
   }
 
   return (
