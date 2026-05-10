@@ -2,6 +2,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
+import { BlogShareButton } from "@/components/blog-share-button"
 import { Navigation, StatusBar } from "@/components/navigation"
 import { getAllPostsSorted, getPostBySlug } from "@/lib/blog-posts"
 
@@ -133,22 +134,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </Button>
             </Link>
 
-            <div className="flex gap-4">
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-2 border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black bg-transparent"
-              >
-                Share
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-2 border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black bg-transparent"
-              >
-                Subscribe
-              </Button>
-            </div>
+            <BlogShareButton title={blogPost.title} />
           </div>
         </div>
       </div>
