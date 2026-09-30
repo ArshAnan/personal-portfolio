@@ -66,7 +66,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="w-16 h-0.5 bg-black dark:bg-white mb-8" />
         </div>
 
-        <article className="prose prose-lg max-w-none dark:prose-invert">
+        <article>
           <div className="text-sm leading-relaxed space-y-6">
             {blogPost.content.split("\n\n").map((paragraph, index) => {
               if (paragraph.startsWith("## ")) {

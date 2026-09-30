@@ -7,10 +7,12 @@ Your personal portfolio has been successfully built and is ready for deployment!
 ## 📊 Build Summary
 
 - **Status**: ✅ Build successful
-- **Static Pages**: 6 (/, /blog, /contact, /projects, /skills, /_not-found)
+- **Static Pages**: 5 (/, /blog, /lab, /contact, /_not-found)
 - **Dynamic Pages**: 1 (/blog/[slug])
-- **Bundle Size**: ~129kB per page
 - **Performance**: Optimized with compression and static generation
+- **WASM**: `/lab`'s C++ numerics are compiled to `public/wasm/numerics.wasm` and committed to
+  git — `npm run build` does NOT need Emscripten installed. Only changing anything under `cpp/`
+  does (`npm run build:wasm`; see `scripts/build-wasm.sh`).
 
 ## 🛠️ Deployment Options
 
