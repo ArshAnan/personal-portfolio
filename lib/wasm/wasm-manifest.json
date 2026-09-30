@@ -1,0 +1,8 @@
+{
+  "abi": 1,
+  "sourceHash": "a8059f68c7b6bf6e7a82a45894bd0708e24ae84c8f4941deb0da096fb1585c7d",
+  "artifactHash": "a3813c3d18bc4ba9dd61c5321409d3e788c9f7732c3f8702e4c6ea4d67993375",
+  "emcc": "emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 6.0.10-git",
+  "bytes": 15138,
+  "builtAt": "2026-09-30T21:56:27.652Z"
+}

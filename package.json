@@ -4,16 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "node scripts/wasm-manifest.mjs check --warn-only",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint && node scripts/wasm-manifest.mjs check",
+    "build:wasm": "bash scripts/build-wasm.sh",
+    "wasm:check": "node scripts/wasm-manifest.mjs check",
+    "test:cpp": "bash scripts/test-cpp.sh"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "gray-matter": "^4.0.3",
     "lucide-react": "^0.540.0",
     "next": "^16.2.6",
     "react": "19.1.0",

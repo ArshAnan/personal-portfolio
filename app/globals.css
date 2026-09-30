@@ -37,6 +37,17 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* /lab canvas palette. Plain hex, not the oklch tokens above — canvas
+     drawing code reads these via getComputedStyle (see lib/lab/hooks.ts),
+     and keeping them separate from the shadcn tokens means changing the
+     UI theme can never accidentally break a demo's colors. --lab-paper
+     matches bg-white / dark:bg-gray-900, the page's actual background. */
+  --lab-ink: #000000;
+  --lab-paper: #ffffff;
+  --lab-grid: #d4d4d8;
+  --lab-muted: #71717a;
+  --lab-accent: #b91c1c;
 }
 
 .dark {
@@ -72,6 +83,12 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+
+  --lab-ink: #ffffff;
+  --lab-paper: #111827; /* matches dark:bg-gray-900 */
+  --lab-grid: #364153;
+  --lab-muted: #99a1af;
+  --lab-accent: #ff6467;
 }
 
 @theme inline {
@@ -168,4 +185,13 @@
 /* Smooth transitions for theme changes */
 * {
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

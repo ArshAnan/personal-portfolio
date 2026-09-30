@@ -1,11 +1,18 @@
+// Fixed set so tags are compile-time checked. Add a topic here when a post
+// needs one — the filter chips on /blog derive from whatever's actually in
+// use, so a topic with no posts yet just doesn't show up.
+export type BlogTag = "Finance" | "Optimization" | "Systems" | "Astronomy" | "Life"
+
 export type BlogPost = {
   slug: string
   title: string
   date: string
   readTime: string
-  tags: string[]
+  tags: BlogTag[]
   content: string
 }
+
+export type PostSummary = Omit<BlogPost, "content">
 
 export const blogPosts: BlogPost[] = [
   {
@@ -36,4 +43,22 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
 
 export function getAllPostsSorted(): BlogPost[] {
   return [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+}
+
+// Strips `content` before handing posts to a client component — otherwise
+// every post's full body gets serialized into the RSC payload just to
+// render a title list. Negligible today at one post; matters once there
+// are thirty.
+export function toSummaries(posts: BlogPost[]): PostSummary[] {
+  return posts.map((p) => ({ slug: p.slug, title: p.title, date: p.date, readTime: p.readTime, tags: p.tags }))
+}
+
+// Tags actually used by at least one post, in the fixed BlogTag order
+// (not alphabetical, not post order) so the filter row doesn't reshuffle
+// as posts are added.
+const TAG_ORDER: BlogTag[] = ["Finance", "Optimization", "Systems", "Astronomy", "Life"]
+
+export function getAllTags(): BlogTag[] {
+  const used = new Set(blogPosts.flatMap((p) => p.tags))
+  return TAG_ORDER.filter((t) => used.has(t))
 }

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Navigation, StatusBar } from "@/components/navigation"
+import { NowStrip } from "@/components/now-strip"
 
 export default function HomePage() {
   return (
@@ -33,6 +34,10 @@ export default function HomePage() {
             </Link>
             .
           </p>
+        </div>
+
+        <div className="mt-8">
+          <NowStrip />
         </div>
       </div>
 
